@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Be My Valentine ❤️</title>
+ <link rel="stylesheet" href="style.css">
+<style>
+    body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+
+    background: url("background.jpg") no-repeat center center;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+    .container {
+        position: relative;
+    }
+
+    h1 {
+        color: white;
+        font-size: 40px;
+        margin-bottom: 30px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+    }
+
+    #yesBtn {
+        background-color: #ff4d6d;
+        color: white;
+    }
+
+    #yesBtn:hover {
+        transform: scale(1.1);
+    }
+
+    #noBtn {
+        background-color: white;
+        color: #ff4d6d;
+    }
+
+    .message {
+        display: none;
+        font-size: 28px;
+        color: white;
+        margin-top: 20px;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Will You Be My Valentine? ❤️</h1>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes 💖</button>
+        <button id="noBtn">No 😜</button>
+    </div>
+
+    <div class="message" id="loveMessage">
+        I knew you will say YES! ❤️ <br><br>
+        See you today at <b>Grand Palace Hotel</b> at 7:00 PM 💕
+    </div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const message = document.getElementById("loveMessage");
+
+    let moved = false;
+
+    noBtn.addEventListener("mouseenter", function() {
+
+        if (!moved) {
+            // Get current position
+            const rect = noBtn.getBoundingClientRect();
+
+            // Fix position so it doesn't jump
+            noBtn.style.position = "fixed";
+            noBtn.style.left = rect.left + "px";
+            noBtn.style.top = rect.top + "px";
+
+            moved = true;
+        }
+
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
+
+        const randomX = Math.random() * maxX;
+        const randomY = Math.random() * maxY;
+
+        noBtn.style.left = randomX + "px";
+        noBtn.style.top = randomY + "px";
+    });
+
+    yesBtn.addEventListener("click", function() {
+        message.style.display = "block";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+    });
+</script>
+
+</body>
+</html>
